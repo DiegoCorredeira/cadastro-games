@@ -1,0 +1,27 @@
+{% extends "main/base.html" %}
+
+{% block content  %}
+<a href="{%url 'games.novo'%}">Novo</a>
+<table class="table table-dark table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Game</th>
+      <th scope="col">Troféus</th>
+      <th scope="col">Player Online</th>
+    </tr>
+  </thead>
+  <tbody>
+{% for games in object_list %}
+    <tr>
+      <td>{{games.nome}}</td>
+      <td>{{games.qtd_trofeus}}</td>
+      <td>
+       {% if games.ativo %}
+       Sim
+       {% endif %}
+       Não
+      </td>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock content %}
