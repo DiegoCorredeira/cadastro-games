@@ -1,6 +1,10 @@
 {% extends "main/base.html" %}
 
 {% block content  %}
+<form method="GET"> 
+  <input type="text" name="nome" placeholder="Buscar por nome">
+  <input type="submit" value="Buscar">
+</form>
 <a href="{%url 'games.novo'%}">Novo</a>
 <table class="table table-dark table-striped">
   <thead>
@@ -8,6 +12,7 @@
       <th scope="col">Game</th>
       <th scope="col">Troféus</th>
       <th scope="col">Player Online</th>
+      <th scope="col">Ações</th>
     </tr>
   </thead>
   <tbody>
@@ -18,8 +23,13 @@
       <td>
        {% if games.ativo %}
        Sim
-       {% endif %}
+       {% else %}
        Não
+       {% endif %}
+      </td>
+      <td>
+        <a href="{% url 'games.editar' games.pk %}">Editar</a>
+        <a href="{% url 'games.remover' games.pk %}">Remover</a>
       </td>
     {% endfor %}
   </tbody>
